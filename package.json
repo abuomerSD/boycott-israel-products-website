@@ -1,0 +1,19 @@
+{
+  "name": "boycott-israel-products-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abuomerSD/boycott-israel-products-website.git"
+  },
+  "author": "Eltayeb Ibrahim && Mohaned Diab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abuomerSD/boycott-israel-products-website/issues"
+  },
+  "homepage": "https://github.com/abuomerSD/boycott-israel-products-website#readme"
+}
