@@ -1,3 +1,12 @@
 techs:
-javascript
-sqlite database
+
+- javascript
+- sqlite database
+- sequelize orm
+- express js
+
+product :
+
+- id
+- name
+- image
