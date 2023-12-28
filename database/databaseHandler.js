@@ -7,12 +7,13 @@ const sequelize = new Sequelize({
     storage: "path/to/database.sqlite"
   });
 
+// defining and creating the product table
+
 class Product extends Model {}
 
 Product.init({
     id: {
         type: DataTypes.UUIDV4,
-        allowNull: false,
         primaryKey: true,
     },
     name: {
@@ -35,7 +36,7 @@ function init() {
 init();
 
 async function createProductTable() {
-    await Product.sync({force: true});
+    await sequelize.sync({force: true});
 }
 
 module.exports = {
