@@ -5,7 +5,7 @@ const productRouter = require('./routes/productRoute');
 const userRouter = require('./routes/userRoute');
 const { init } = require('./database/databaseHandler');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 // set the view engine
 app.set('view engine', 'ejs');

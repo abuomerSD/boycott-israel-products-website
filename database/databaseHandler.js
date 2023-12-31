@@ -1,4 +1,4 @@
-const {Sequelize, DataTypes, Model, UUIDV4} = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 
 // const sequelize = new Sequelize('sqlite::memory:')
 
@@ -47,8 +47,9 @@ User.init({
         allowNull: false,
     },
     role: {
-        type: DataTypes.ENUM('admin', 'user'),
+        type: DataTypes.ENUM,
         allowNull: false,
+        values: ['admin', 'user'],
     }
 },
 {
@@ -63,8 +64,8 @@ function init() {
 // init();
 
 async function createProductTable() {
-    await sequelize.sync({force: true});
-    // await sequelize.sync();
+    // await sequelize.sync({force: true});
+    await sequelize.sync();
 }
 
 module.exports = {
