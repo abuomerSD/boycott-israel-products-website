@@ -105,8 +105,51 @@ const login = async (req, res) => {
 
 }
 
+const updateUser = async (req, res) => {
+    const {id} = req.params;
+    const {username, password, role}  =req.body;
+
+    try {
+        let oldUser = await User.findOne({where:{id:id}})
+        oldUser.username = username;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        oldUser.password = hashedPassword;
+        oldUser.role = role;
+        oldUser.save();
+        res.json(oldUser);
+        
+    } catch (error) {
+        res.status(404).json({
+            error: error.message,
+            message: error.stack,
+        })
+    }
+}
+
+const deleteUser = async (req, res) => {
+    const {id} = req.params;
+    try {
+        await User.destroy({where: {id: id}})
+            .then((rows)=> {
+                if (rows > 0) {
+                    res.json({ message: `user deleted successfully`})
+                }
+                else{
+                    res.json({ message: "can/'t delete this user" });
+                }
+            })
+    } catch (error) {
+        res.json({
+            error: error.message,
+            message: error.stack,
+        })
+    }
+}
+
 module.exports = {
     registerUser,
     getAllUsers,
     login,
+    updateUser,
+    deleteUser
 }
