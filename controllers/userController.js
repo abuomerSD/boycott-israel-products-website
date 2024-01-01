@@ -47,7 +47,66 @@ const getAllUsers = async (req, res) => {
         })
     }
 }
+
+const login = async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const user = await User.findOne({where: {username: username}})
+            .then((user)=> {
+                if(user === null){
+                    return res.status(404).json({
+                        message: 'user not found',
+                    });
+                }
+                else{
+                    bcrypt.compare(password, user.password, (error, result) => {
+                        if (error) {
+                            return res.json({
+                                error: error.message,
+                                message: error.stack,
+                            });
+                        }
+                        else {
+                            if (!result) {
+                                return res.status(401).json({
+                                    message: 'Please Enter correct password',
+                                });
+                            }
+                            else{
+                                const maxAge = 60 * 60;
+                                const token = jwt.sign({id: user.id, username, role: user.role},
+                                    JWT_SECRET,
+                                    {
+                                        expiresIn: maxAge,
+                                    });
+
+                                res.cookie('jwt', token, {
+                                    httpOnly: true,
+                                    maxAge: maxAge * 1000,
+                                    secure: false,
+                                    sameSite: 'None'
+                                });
+                                res.status(201).json({
+                                    message: 'username and password is correct',
+                                    data: user,
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        
+    } catch (error) {
+        res.json({
+            error: error.message,
+            message: error.stack,
+        })
+    }
+
+}
+
 module.exports = {
     registerUser,
     getAllUsers,
+    login,
 }

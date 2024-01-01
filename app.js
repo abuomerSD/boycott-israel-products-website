@@ -4,6 +4,9 @@ require('dotenv').config();
 const productRouter = require('./routes/productRoute');
 const userRouter = require('./routes/userRoute');
 const { init } = require('./database/databaseHandler');
+const { reqLogger } = require('./middlewares/log');
+// const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,8 +20,14 @@ app.get('/', (req, res) => {
 // to be sure the application will accept json
 app.use(express.json());
 
+// cookie parser
+app.use(cookieParser());
+
+// request logger
+app.use(reqLogger);
+
 // createing the database and tables
-init();
+// init();
 
 // handling the routes
 app.use('/products', productRouter);

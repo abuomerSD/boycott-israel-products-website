@@ -4,7 +4,7 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const userAuth = (req, res, next) => {
-    const token = req.cookie.jwt;
+    const token = req.cookies.jwt;
 
     if (token) {
         jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
@@ -13,7 +13,7 @@ const userAuth = (req, res, next) => {
             }
             else{
                 if (decodedToken.role !== 'admin') {
-                    return res.status(401).json({ message: 'Not authorized' });
+                    return res.status(401).json({ message: 'Not authorized user, not admin' });
                 } else {
                     next();
                 }
