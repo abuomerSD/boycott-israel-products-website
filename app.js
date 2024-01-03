@@ -13,6 +13,9 @@ const PORT = process.env.PORT || 3000;
 // set the view engine
 app.set('view engine', 'ejs');
 
+// defining the public files path
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
     res.render('index');
 });
@@ -27,7 +30,7 @@ app.use(cookieParser());
 app.use(reqLogger);
 
 // createing the database and tables
-// init();
+init();
 
 // handling the routes
 app.use('/products', productRouter);

@@ -1,0 +1,45 @@
+- /users
+    1- add user (admin) : POST request (require a cookie token, you must login first)
+    body {
+        "username":"",
+        "password":"",
+        "role":"admin"
+    }
+
+    2- get all users in json : GET request (require a cookie token, you must login first)
+
+- /users/login
+    1- login a user : POST request 
+        body {
+            "username":"",
+            "password": ""
+        }
+
+- /users/:id 
+    1- update username and password and role using the id : PUT request (require a cookie token, you must login first)
+        body {
+            "username":"",
+            "password", "",
+            "role": ""
+        }
+
+    2- delete the user using the id : DELETE request (require a cookie token, you must login first)
+
+==========================================================================
+
+- /products 
+    1- get all products in json : GET request 
+    2- add a new product : POST request (require a cookie token, you must login first)
+        body {
+            "name": "",
+            "imagePath":""
+        }
+
+- /products/:id
+    1- get single product details by id : GET request 
+    2- update product name and image : PUT request (require a cookie token, you must login first)
+        body {
+            "name": "",
+            "imagePath":""
+        }
+    3- delete product : DELETE request (require a cookie token, you must login first)

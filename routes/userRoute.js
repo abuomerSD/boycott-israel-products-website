@@ -4,8 +4,8 @@ const { registerUser,getAllUsers, login, updateUser, deleteUser } = require('../
 const { userAuth } = require('../middlewares/auth')
 
 // router.post('/', userAuth, registerUser)
-router.route('/').get(userAuth , getAllUsers).post(userAuth,registerUser);
+router.route('/').get(userAuth , getAllUsers).post(userAuth ,registerUser);
 router.route('/login').post(login);
-router.route('/login/:id').put(updateUser).delete(deleteUser);
+router.route('/:id').put(userAuth ,updateUser).delete( userAuth ,deleteUser);
 
 module.exports = router;
