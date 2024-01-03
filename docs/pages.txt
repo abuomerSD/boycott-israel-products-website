@@ -1,0 +1,31 @@
+pages :
+
+- login page (private route) 
+- add product page (private route) 
+- all products page (update and delete product can handle here)
+- add users page
+- all users page (update and delete users can handle here)
+
+login page:
+
+- user name input
+- password input
+- submit button
+
+add product page:
+
+- product name input
+- product image filechooser
+
+all products page:
+this page contains a list of products to boycott it.
+
+- search product by name input
+
+add user page : 
+- username input
+- password input
+- role input
+
+all users page: 
+- search user input
