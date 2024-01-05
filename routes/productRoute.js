@@ -5,11 +5,11 @@ const { getAllProducts, getSingleProduct, createProduct, updateProduct, deletePr
 
 router.route('/')
     .get(getAllProducts)
-    .post(userAuth, createProduct);
+    .post(createProduct);
 router.route('/:id')
     .get(getSingleProduct)
-    .put(userAuth ,updateProduct)
-    .delete(userAuth, deleteProduct);
+    .put(updateProduct)
+    .delete(deleteProduct);
 
 
 
